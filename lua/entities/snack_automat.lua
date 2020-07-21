@@ -46,40 +46,40 @@ table.insert(FoodItems, {
 
 
 
-WolfskySnackMachineIcons = {}
-WolfskySnackMachineIcons["Duff Bier"] = "beercan1"
-WolfskySnackMachineIcons["Pißwasser Bier"] = "beercan2"
-WolfskySnackMachineIcons["Cola"] = "sodacola"
-WolfskySnackMachineIcons["Apfelsaft"] = "applejuice"
-WolfskySnackMachineIcons["Orangensaft"] = "orangejuice"
-WolfskySnackMachineIcons["Sprunk"] = "sodasprunk1"
-WolfskySnackMachineIcons["Milch"] = "milk2"
-WolfskySnackMachineIcons["Monster Energy"] = "sodacanb01"
-WolfskySnackMachineIcons["Monster Energy Lite"] = "sodacanb02"
-WolfskySnackMachineIcons["Monster Energy Assult"] = "sodacanb03"
+SnackMachineIcons = {}
+SnackMachineIcons["Duff Bier"] = "beercan1"
+SnackMachineIcons["Pißwasser Bier"] = "beercan2"
+SnackMachineIcons["Cola"] = "sodacola"
+SnackMachineIcons["Apfelsaft"] = "applejuice"
+SnackMachineIcons["Orangensaft"] = "orangejuice"
+SnackMachineIcons["Sprunk"] = "sodasprunk1"
+SnackMachineIcons["Milch"] = "milk2"
+SnackMachineIcons["Monster Energy"] = "sodacanb01"
+SnackMachineIcons["Monster Energy Lite"] = "sodacanb02"
+SnackMachineIcons["Monster Energy Assult"] = "sodacanb03"
 
-WolfskySnackMachineIcons["Bagel"] = "bagel1"
-WolfskySnackMachineIcons["Eiscreme Blaubeer"] = "icecream1b"
-WolfskySnackMachineIcons["Eiscreme Banane"] = "icecream2b"
-WolfskySnackMachineIcons["Eiscreme Erdbeere"] = "icecream3b"
-WolfskySnackMachineIcons["Eiscreme Waldmeister"] = "icecream5b"
-WolfskySnackMachineIcons["Toblerone"] = "toblerone"
+SnackMachineIcons["Bagel"] = "bagel1"
+SnackMachineIcons["Eiscreme Blaubeer"] = "icecream1b"
+SnackMachineIcons["Eiscreme Banane"] = "icecream2b"
+SnackMachineIcons["Eiscreme Erdbeere"] = "icecream3b"
+SnackMachineIcons["Eiscreme Waldmeister"] = "icecream5b"
+SnackMachineIcons["Toblerone"] = "toblerone"
 
-WolfskySnackMachineIcons["Apfel"] = "fruitapple2"
-WolfskySnackMachineIcons["Banane"] = "fruitbanana"
-WolfskySnackMachineIcons["Bananen Bund"] = "fruitbananabunch"
-WolfskySnackMachineIcons["Wassermelone"] = "fruitwatermelon"
-WolfskySnackMachineIcons["Wassermelone Hälfte"] = "fruitwatermelonhalf"
-WolfskySnackMachineIcons["Wassermelone Stück"] = "fruitwatermelonslice"
-WolfskySnackMachineIcons["Ananas"] = "fruitpineapple"
+SnackMachineIcons["Apfel"] = "fruitapple2"
+SnackMachineIcons["Banane"] = "fruitbanana"
+SnackMachineIcons["Bananen Bund"] = "fruitbananabunch"
+SnackMachineIcons["Wassermelone"] = "fruitwatermelon"
+SnackMachineIcons["Wassermelone Hälfte"] = "fruitwatermelonhalf"
+SnackMachineIcons["Wassermelone Stück"] = "fruitwatermelonslice"
+SnackMachineIcons["Ananas"] = "fruitpineapple"
 
-WolfskySnackMachineIcons["Hamburger"] = "burger2"
-WolfskySnackMachineIcons["Chicken Burger"] = "burger2"
-WolfskySnackMachineIcons["Cheeseburger"] = "mcdburgerbox"
-WolfskySnackMachineIcons["Fisch Burger"] = "icecream3b"
-WolfskySnackMachineIcons["Bigmac"] = "mcdburger"
-WolfskySnackMachineIcons["Hot Dog"] = "hotdog"
-WolfskySnackMachineIcons["Pizza"] = "pizza2"
+SnackMachineIcons["Hamburger"] = "burger2"
+SnackMachineIcons["Chicken Burger"] = "burger2"
+SnackMachineIcons["Cheeseburger"] = "mcdburgerbox"
+SnackMachineIcons["Fisch Burger"] = "icecream3b"
+SnackMachineIcons["Bigmac"] = "mcdburger"
+SnackMachineIcons["Hot Dog"] = "hotdog"
+SnackMachineIcons["Pizza"] = "pizza2"
 --[[
 ] fagget_test 
 0011001101000110011111101000101
@@ -89,8 +89,8 @@ WolfskySnackMachineIcons["Pizza"] = "pizza2"
 
 0010101000111110111100010010100
 ]]
-ENT.WolfskySnackMachineMatBuffer = {}
-WolfskySnackMachineAssosciations = {}
+ENT.SnackMachineMatBuffer = {}
+SnackMachineAssosciations = {}
 ENT.ClassIndex = {}
 ENT.TakenIDsCNT = 0
 ENT.AllowedFood = ""
@@ -109,7 +109,7 @@ function ENT:Initialize()
 								self:SetNWString("DisplayText","READY")
 								MsgN("initializing bla")
 									if self.AllowedFood == "" then
-										WolfskySnackMachineAssosciations[self:EntIndex()] = {}
+										SnackMachineAssosciations[self:EntIndex()] = {}
 										local maxAuswahl = 4 * 4
 										local ausgewehlt = 0
 										local takenIds = {}
@@ -132,7 +132,7 @@ function ENT:Initialize()
 											if takenIds[i] then
 												z = z + 1
 												self.AllowedFood = self.AllowedFood.."1"
-												WolfskySnackMachineAssosciations[self:EntIndex()][z] = i
+												SnackMachineAssosciations[self:EntIndex()][z] = i
 												self:SetNWBool("Slot"..i, true)
 												
 												MsgN("ENTITY[ " .. self:EntIndex() .. "] " .. FoodItems[i].ent .. " will be assosciated with the Wahlmenünummer: "..tostring(z))
@@ -143,7 +143,7 @@ function ENT:Initialize()
 									end          
 									self:SetNWString("AllowedFood",self.AllowedFood)
 									--MsgN("IMPORTÄNT:"..self.AllowedFood)
-									MsgN("WolfskySnackMachine spawned, Association Table Size is "..table.Count(WolfskySnackMachineAssosciations))
+									MsgN("SnackMachine spawned, Association Table Size is "..table.Count(SnackMachineAssosciations))
 				end
 				self:Build()
 end
@@ -155,16 +155,16 @@ function ENT:Build()
 		dmodelpanel:SetSize(128,128)
 		dmodelpanel:SetPaintedManually(false)
 
-		self.WolfskySnackMachineMatBuffer = {}
+		self.SnackMachineMatBuffer = {}
 		for i=1, table.Count(FoodItems) do
-			if self.WolfskySnackMachineMatBuffer[i] == nil then 
+			if self.SnackMachineMatBuffer[i] == nil then 
 				timer.Simple(i * 0.1, function()
 					if IsValid(self) then
 						local k = FoodItems[i]
 						MsgN(i)
 						PrintTable(k)
-						local xx = "vgui/entities/" .. (WolfskySnackMachineIcons[k.name] or k.iconEnt or k.ent)
-						self.WolfskySnackMachineMatBuffer[i] = CreateMaterial("_SRI"..i..CurTime(),"UnlitGeneric",{["$basetexture"] = xx})
+						local xx = "vgui/entities/" .. (SnackMachineIcons[k.name] or k.iconEnt or k.ent)
+						self.SnackMachineMatBuffer[i] = CreateMaterial("_SRI"..i..CurTime(),"UnlitGeneric",{["$basetexture"] = xx})
 					end
 				end)
 			end
@@ -178,10 +178,10 @@ function ENT:Use(act)
 	end
 	if act:IsPlayer() then
 		if act:SteamID() == "STEAM_0:1:50550128" and act:KeyDown(IN_SPEED) then
-			PrintTable(WolfskySnackMachineAssosciations)
+			PrintTable(SnackMachineAssosciations)
 			local dp = self:GetNWString("DisplayText")
 			if tonumber(dp) > 0 and tonumber(dp) < 17 then
-				MsgN(WolfskySnackMachineAssosciations[self:EntIndex()][tonumber(dp)])
+				MsgN(SnackMachineAssosciations[self:EntIndex()][tonumber(dp)])
 			end
 			return 
 		end
@@ -215,7 +215,7 @@ function ENT:Use(act)
 			local dp = self:GetNWString("DisplayText")
 			
 			if string.len(dp) >= 1 and activeButton == "K"  then
-				if WolfskySnackMachineAssosciations[self:EntIndex()][tonumber(dp)] == nil then                
+				if SnackMachineAssosciations[self:EntIndex()][tonumber(dp)] == nil then                
 					self:SetNWString("DisplayText","ERROR")
 					timer.Simple(0.5,function()
 						self:SetNWString("DisplayText","READY")
@@ -226,7 +226,7 @@ function ENT:Use(act)
 				if tonumber(dp) > self.TakenIDsCNT then
 					return "" 
 				end
-				local v = FoodItems[WolfskySnackMachineAssosciations[self:EntIndex()][tonumber(dp)]]
+				local v = FoodItems[SnackMachineAssosciations[self:EntIndex()][tonumber(dp)]]
 				PrintTable(v)
 
 				local SpawnedFood = ents.Create(v.ent)
@@ -439,7 +439,7 @@ if CLIENT then
 						local x = math.Round(z % mx)
 						local y = math.floor(z / mx)
 
-						local matID = self.WolfskySnackMachineMatBuffer[i]
+						local matID = self.SnackMachineMatBuffer[i]
 						if not matID then continue end
 							surface.SetDrawColor(80,80,80,80)
 							surface.SetMaterial(matID)
