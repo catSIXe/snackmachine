@@ -26,3 +26,5 @@ SWEP.VElements = {
 SWEP.WElements = {
 	["food"] = { type = "Model", model = "models/foodnhouseholditems/icecream4.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(3.72, 2.571, -1.547), angle = Angle(166.132, -180, 10.519), size = Vector(0.5, 0.5, 0.5), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
+SWEP.FoodType = "icecream"
+SWEP.FoodColor = Color(102,68,0)

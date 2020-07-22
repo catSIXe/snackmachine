@@ -1,4 +1,6 @@
 AddCSLuaFile()
+	
+CreateConVar( "food_spam", 0, FCVAR_NOTIFY, "Make food spammable")
 SWEP.PrintName = "Base"
 
 SWEP.Author = "catSIXe"
@@ -46,6 +48,7 @@ SWEP.VElements = {
 SWEP.WElements = {
 	["food"] = { type = "Model", model = "models/foodnhouseholditems/icecream1.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(3.72, 2.571, -1.547), angle = Angle(166.132, -180, 10.519), size = Vector(0.5, 0.5, 0.5), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
+SWEP.FoodType = "generic"
 
 function SWEP:PrimaryAttack()
 	if SERVER then
@@ -54,9 +57,29 @@ function SWEP:PrimaryAttack()
 	end
 end
 function SWEP:SecondaryAttack()
-	self:PrimaryAttack()
-	-- maybe throwing food 
-	return false
+	local tr = self.Owner:GetEyeTrace()
+	self:EmitSound("weapons/slam/throw.wav")
+	self.Owner:ViewPunch( Angle( math.Rand(-8,8), math.Rand(-8,8), 0 ) )
+	self.BaseClass.ShootEffects (self)
+	if (!SERVER) then return end
+	local ent = ents.Create("thrown_food")
+	ent:SetPos(self.Owner:GetShootPos())
+	--ent:SetAngles(self.Owner:EyeAngles())
+	ent:SetupFoodType(self.FoodType)
+	ent:SetupColor(self.FoodColor or Color(255,255,255))
+	ent:Spawn()
+	ent:SetModel(self.WorldModel)
+	ent:Activate()
+    local phys = ent:GetPhysicsObject( )
+    if IsValid( phys ) then
+		phys:SetVelocity( self.Owner:GetPhysicsObject():GetVelocity() )
+		phys:AddVelocity( self.Owner:GetAimVector( ) * 128 * phys:GetMass( ) )
+		--phys:AddAngleVelocity( VectorRand() * 128 * phys:GetMass( ) )
+    end
+
+	SafeRemoveEntityDelayed(ent, 15)
+	if GetConVar("food_spam"):GetBool() then return true end
+	SafeRemoveEntity(self.Weapon)
 end
 /********************************************************
 	SWEP Construction Kit base code

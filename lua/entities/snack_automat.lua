@@ -16,7 +16,7 @@ table.insert(FoodItems, {
 	energy = 10, price = 10
 })
 table.insert(FoodItems, {
-	ent = "beercan2", model = "models/foodnhouseholditems/beercan2.mdl",
+	ent = "f_beer_duff", model = "models/foodnhouseholditems/beercan2.mdl", iconEnt="beercan2",
 	energy = 10, price = 10
 })
 table.insert(FoodItems, {
